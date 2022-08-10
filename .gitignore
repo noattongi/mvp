@@ -1,0 +1,7 @@
+.DS_Store
+nfl-contract-expert/client/dist/bundle.js
+nfl-contract-expert/client/dist/bundle.js.map
+nfl-contract-expert/node_modules
+nfl-contract-expert/package-lock.json
+scraper/node_modules
+scraper/package-lock.json
