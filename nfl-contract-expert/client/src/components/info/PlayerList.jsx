@@ -1,12 +1,16 @@
 import React, {useEffect, useState} from 'react';
+import PlayerEntry from './PlayerEntry.jsx';
 
-function PlayerList(props) {
-
+function PlayerList({currentData}) {
 
   return(
     <div>
-      <ul>
-        {}
+      <ul className='player-list'>
+        {currentData["Green Bay Packers"]?.players.map((player) => {
+          return (
+            <PlayerEntry player={player} key={player._id}/>
+          )
+        })}
       </ul>
     </div>
   )

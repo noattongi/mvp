@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import PlayerList from './PlayerList.jsx';
+import axios from 'axios';
 
 function Info(props) {
 
@@ -12,11 +13,11 @@ function Info(props) {
       setData(res.data);
       setCurrentData(res.data)
     })
-  }, [data])
+  }, [])
 
   return (
-    <div>
-      <PlayerList />
+    <div className='player-list-container'>
+      <PlayerList currentData={currentData}/>
     </div>
   )
 }

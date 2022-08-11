@@ -8,7 +8,15 @@ app.use(express.static(__dirname + '/../client/dist'));
 app.get('/teams', (req, res) => {
   find()
   .then((results) => {
-    res.send(results);
+    teams = {}
+    for (team of results) {
+      teams[team.name] = {
+        _id: team._id,
+        logoUrl: team.logoUrl,
+        players: team.players.slice()
+      }
+    }
+    res.send(teams);
   })
 })
 

@@ -28,15 +28,28 @@ async function getPlayerData(teamURL) {
       .then((response) => {
         let $$ = cheerio.load(response.data);
         const positionSelector = '#content > div > div.player-description > div > h4 > a';
+        const playerPicSelector = '#content > div > div.player-description > span > img';
+        const playerAgeSelector = '#current-contract > div:nth-child(1) > h5:nth-child(1)';
+        const playerExpSelector = '#current-contract > div:nth-child(1) > h5:nth-child(3)';
+        const agencySelector = '#current-contract > div:nth-child(1) > h5:nth-child(2)'
 
-        return $$(positionSelector).text();
-      })
-      .then((position) => {
-        let player = {
+        var playerImg = baseUrl + $$(playerPicSelector).attr("src")
+        var position = $$(positionSelector).text();
+        var age = $$(playerAgeSelector).text().slice(-2);
+        var exp = $$(playerExpSelector).text().slice(16).trim();
+        var signedUntil = $$(agencySelector).text().slice(13);
+
+        return {
           name: name,
           capHit: capHit,
-          position: position
+          playerImg: playerImg,
+          position: position,
+          age: age,
+          exp: exp,
+          signedUntil: signedUntil
         }
+      })
+      .then((player) => {
         console.log(player);
         players.push(player);
       })
@@ -60,7 +73,7 @@ async function getAllTeams() {
     const $ = cheerio.load(response.data);
     const allTeamsSelector = '#site-navigation > div.main-section > div.right-container > ul.teams';
 
-    for (let i = 18; i <= 18; i++) {
+    for (let i = 1; i <= 32; i++) {
       var teamSelector = allTeamsSelector + ` > li:nth-child(${i})`;
       var teamName = $(teamSelector + ` > a:nth-child(2) > span`).text();
       var logoPath = $(teamSelector + ` > a:nth-child(1) > img`).attr("src");

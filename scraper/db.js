@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/nfl');
+mongoose.connect('mongodb://localhost/nfl2');
 
 const db = mongoose.connection;
 
@@ -17,7 +17,11 @@ const teamSchema = new mongoose.Schema({
   players: [{
     name: String,
     capHit: String,
-    position: String
+    position: String,
+    playerImg: String,
+    age: String,
+    exp: String,
+    signedUntil: String
   }]
 })
 
