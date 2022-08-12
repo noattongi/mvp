@@ -10,12 +10,31 @@ export const TeamContext = createContext();
 function App() {
 
   const [teamShowing, setTeamShowing] = useState('San Francisco 49ers');
+  const [positionsShowing, setPositionsShowing] = useState({
+    "All": true,
+    "Quarterback": false,
+    "Runningback": false,
+    "Wide Receiver": false,
+    "Tight End": false,
+    "Right Tackle": false,
+    "Right Guard": false,
+    "Center": false,
+    "Left Guard": false,
+    "Left Tackle": false,
+    "Edge Rusher": false,
+    "Defensive Tackle": false,
+    "Cornerback": false,
+    "Linebacker": false,
+    "Safety": false
+  });
 
   return(
     <div className='app'>
       <TeamContext.Provider value={{
         teamShowing: teamShowing,
-        setTeamShowing: setTeamShowing
+        setTeamShowing: setTeamShowing,
+        positionsShowing: positionsShowing,
+        setPostitionsShowing: setPositionsShowing,
       }}>
       <NavBar />
       <div className='page-content'>
