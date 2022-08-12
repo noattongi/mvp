@@ -30,9 +30,8 @@ body{
   align-items: center;
   font-weight: 700;
   font-size: 24px;
-  padding-top: 180px;
+  padding-top: 100px;
   padding-left: 30px;
-
 }
 
 .defense{
@@ -46,6 +45,7 @@ body{
   border-width: 7px;
   border-color: black;
   background-color: white;
+  border-radius: 4px;
 }
 
 #d-line-button{
@@ -54,6 +54,7 @@ body{
   padding: 10px;
   margin-bottom: 20px;
   background-color: white;
+  border-radius: 4px;
 }
 
 #s{
@@ -83,6 +84,7 @@ body{
   border-width: 7px;
   border-color: black;
   background-color: white;
+  border-radius: 4px;
 }
 
 .line-esc{
@@ -177,15 +179,69 @@ body{
   font-family: 'Do Hyeon', sans-serif;
   display: flex;
   align-items: center;
+  justify-content: space-between;
+}
+
+.nav-teams{
+  margin-right: 50px;
+}
+
+.team-modal{
+  width: 100%;
+  margin-top: 100px;
+  background-color: white;
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  align-items: center;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  position: absolute;
+}
+
+.logo-grid-cell{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo-grid-cell img{
+  cursor: pointer;
+}
+
+.nav-players{
+  margin-right: 50px;
+}
+
+.nav-players:hover {
+  color: lightgreen;
+  cursor: pointer;
+}
+
+.nav-teams:hover {
+  color: lightgreen;
+  cursor: pointer;
+}
+
+.nav-options{
+  display: flex;
+  font-size: 35px;
 }
 
 .logo{
   font-size: 40px;
   margin-left: 50px;
+  cursor: pointer;
 }
 
 .player-list-container{
-  padding-top: 110px;
+  height: 890px;
+  overflow-y: scroll;
+}
+
+.player-list{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
 }
 
 .player-card{
@@ -201,6 +257,7 @@ body{
   border-radius: 10px;
   align-items: center;
   background-color: white;
+  box-shadow: 8px 8px 3px grey;
 }
 
 .player-card-info{
