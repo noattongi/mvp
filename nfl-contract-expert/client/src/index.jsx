@@ -34,7 +34,7 @@ function App() {
         teamShowing: teamShowing,
         setTeamShowing: setTeamShowing,
         positionsShowing: positionsShowing,
-        setPostitionsShowing: setPositionsShowing,
+        setPositionsShowing: setPositionsShowing,
       }}>
       <NavBar />
       <div className='page-content'>

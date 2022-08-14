@@ -19,99 +19,105 @@ function Diagram() {
   const [rbSelect, setRbSelect] = useState(false);
   const [qbSelect, setQbSelect] = useState(false);
 
-  const handleSClick = (e) => {
-    if (!sSelect){
+  const posStateHandler = (state, setState, pos) => {
+    if (!state) {
       var prev = teamContext.positionsShowing;
       prev["All"] = false;
-      prev["Safety"] = true;
+      prev[pos] = true;
       teamContext.setPositionsShowing(prev);
-      setSSelect(true);
+      setState(true);
     } else {
       var prev = teamContext.positionsShowing;
-      prev["Safety"] = false;
+      prev[pos] = false;
       var hasTrue = false;
-      for (let pos in prev) {
-        if (prev[pos]){
-          prev["All"] = true;
+      for (let position in prev) {
+        if (prev[position]){
+          hasTrue = true;
           break;
         }
       }
+      prev["All"] = !hasTrue;
       teamContext.setPositionsShowing(prev);
-      setSSelect(false);
+      setState(false);
     }
+    console.log(pos);
+  }
+
+  const handleSClick = (e) => {
+    posStateHandler(sSelect, setSSelect, 'Safety');
   }
   const handleLBClick = (e) => {
-
+    posStateHandler(lbSelect, setLbSelect, 'Linebacker');
   }
   const handleCBClick = (e) => {
-
+    posStateHandler(cbSelect, setCbSelect, 'Cornerback');
   }
   const handleDEClick = (e) => {
-
+    posStateHandler(deSelect, setDeSelect, 'Edge Rusher');
   }
   const handleDTClick = (e) => {
-
+    posStateHandler(dtSelect, setDtSelect, 'Interior Defensive Line');
   }
   const handleLTClick = (e) => {
-
+    posStateHandler(ltSelect, setLtSelect, 'Left Tackle');
   }
   const handleLGClick = (e) => {
-
-  }
+    posStateHandler(lgSelect, setLgSelect, 'Left Guard')
+;  }
   const handleCClick = (e) => {
-
+    posStateHandler(cSelect, setCSelect, 'Center');
   }
   const handleRGClick = (e) => {
-
+    posStateHandler(rgSelect, setRgSelect, 'Right Guard');
   }
   const handleRTClick = (e) => {
-
+    posStateHandler(rtSelect, setRtSelect, 'Right Tackle');
   }
   const handleWRClick = (e) => {
-
+    posStateHandler(wrSelect, setWrSelect, 'Wide Receiver');
   }
   const handleTEClick = (e) => {
-
+    posStateHandler(teSelect, setTeSelect, 'Tight End');
   }
-  const handlRBClick = (e) => {
-
+  const handleRBClick = (e) => {
+    posStateHandler(rbSelect, setRbSelect, 'Running Back');
   }
   const handleQBClick = (e) => {
-
+    posStateHandler(qbSelect, setQbSelect, 'Quarterback');
   }
 
 
   return(
     <div className="diagram">
-      <div className='defense' id='s' onClick={handleSClick}>S</div>
-      <div className='defense' id='lb'>LB</div>
+      <div style={{backgroundColor: sSelect ? 'lightgreen' : ''}} className='defense' id='s' onClick={handleSClick}>S</div>
+      <div style={{backgroundColor: lbSelect ? 'lightgreen' : ''}} className='defense' id='lb' onClick={handleLBClick}>LB</div>
       <div id='d-line-button'>Defensive Line</div>
       <div className='line-esc'>
         <div className='wr-cb'>
-          <div className='defense' id='cb'>CB</div>
-          <div className='offense' id='wr'>WR</div>
+          <div style={{backgroundColor: cbSelect ? 'lightgreen' : ''}} className='defense' id='cb' onClick={handleCBClick}>CB</div>
+          <div style={{backgroundColor: wrSelect ? 'lightgreen' : ''}} className='offense' id='wr' onClick={handleWRClick}>WR</div>
         </div>
         <div className='the-line'>
           <div className='d-line-group'>
-            <div id='de' className='d-lineman'>DE</div>
-            <div id='dt' className='d-lineman'>DT</div>
-            <div id='dt' className='d-lineman'>DT</div>
-            <div id='de' className='d-lineman'>DE</div>
+            <div id='de' className='d-lineman' style={{backgroundColor: deSelect ? 'lightgreen' : ''}} onClick={handleDEClick}>DE</div>
+            <div id='dt' className='d-lineman' style={{backgroundColor: dtSelect ? 'lightgreen' : ''}} onClick={handleDTClick}>DT</div>
+            <div id='dt' className='d-lineman' style={{backgroundColor: dtSelect ? 'lightgreen' : ''}} onClick={handleDTClick}>DT</div>
+            <div id='de' className='d-lineman' style={{backgroundColor: deSelect ? 'lightgreen' : ''}} onClick={handleDEClick}>DE</div>
           </div>
           <div className='o-line-group'>
-            <div id='lt' className='o-lineman'>LT</div>
-            <div id='lg' className='o-lineman'>LG</div>
-            <div id='c' className='o-lineman'>C</div>
-            <div id='rg' className='o-lineman'>RG</div>
-            <div id='rt' className='o-lineman'>RT</div>
+            <div id='lt' className='o-lineman' style={{backgroundColor: ltSelect ? 'lightgreen' : ''}} onClick={handleLTClick}>LT</div>
+            <div id='lg' className='o-lineman' style={{backgroundColor: lgSelect ? 'lightgreen' : ''}} onClick={handleLGClick}>LG</div>
+            <div id='c' className='o-lineman' style={{backgroundColor: cSelect ? 'lightgreen' : ''}} onClick={handleCClick}>C</div>
+            <div id='rg' className='o-lineman' style={{backgroundColor: rgSelect ? 'lightgreen' : ''}} onClick={handleRGClick}>RG</div>
+            <div id='rt' className='o-lineman' style={{backgroundColor: rtSelect ? 'lightgreen' : ''}} onClick={handleRTClick}>RT</div>
           </div>
         </div>
-        <div className='offense' id='te'>TE</div>
+        <div className='offense' id='te' style={{backgroundColor: teSelect ? 'lightgreen' : ''}} onClick={handleTEClick}>TE</div>
       </div>
       <div className='offense-back'>
         <div id='o-line-button'>Offensive Line</div>
-        <div className='offense' id='rb'>RB</div>
-        <div className='offense' id='qb'>QB</div>
+        <div className='offense' id='rb' style={{backgroundColor: rbSelect ? 'lightgreen' : ''}} onClick={handleRBClick}>RB</div>
+        <div className='offense' id='qb' style={{backgroundColor: qbSelect ? 'lightgreen' : ''}} onClick={handleQBClick}>QB</div>
       </div>
     </div>
   )
